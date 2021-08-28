@@ -13,7 +13,7 @@ const api = axios.create({
 });
 
 function GithubAPI() {
-
+    // const { REACT_APP_MY_ENV } = process.env;
     // const fetchData_js = async (organizationName) => {
     //     const QUERY_ORGANIZATION = `query {
     //         organization(login: "${organizationName}") {
@@ -69,7 +69,10 @@ function GithubAPI() {
                 organizationName //todo Note : jo name oper func parameter ko pas kiya tha same name hi yaha pass krain gy
             }
         })
-        console.log('GraphQL Response: ', res);
+
+        const { data:{data:{viewer:{repositories:{edges}}}}} = res;
+        // console.log(process.env.REACT_APP_GITHUB_ACCESS_TOKEN)
+        console.log('GraphQL Response: ', edges);
     }
 
 // ! mutation kro,, add star kro,, ar usky bd,,hmain starrable ki body wala code la kr return krwa do
@@ -88,8 +91,10 @@ function GithubAPI() {
     }
 
     useEffect(() => {
-        fetchData_ql("qutbITech"),
+        // fetchData_ql("the-road-to-learn-react")
+        // addStart("MDEwOlJlcG9zaXRvcnkyMDMzMTA0MjU=")
         // addStart('Paste here ID_OF_Repo, where you want to give star')
+        
     }, [])
 
     return (
